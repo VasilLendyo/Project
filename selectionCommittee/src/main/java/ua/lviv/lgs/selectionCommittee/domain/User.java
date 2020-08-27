@@ -1,5 +1,7 @@
 package ua.lviv.lgs.selectionCommittee.domain;
 
+import java.util.Map;
+
 public class User {
 
 	private Integer id;
@@ -7,37 +9,32 @@ public class User {
 	private String password;
 	private String firstName;
 	private String lastName;
-	private Integer gradeMath;
-	private Integer gradeHistory;
-	private Integer gradeGeography;
-	private String role;
-	
+	private Map<Subjects, Integer> point;
+	private UserRole role;
+
 	public User() {
 	}
 
-	public User(String email, String password, String firstName, String lastName, Integer gradeMath,
-			Integer gradeHistory, Integer gradeGeography, String role) {
+	public User(String email, String password, String firstName, String lastName, Map<Subjects, Integer> point,
+			UserRole role) {
+		super();
 		this.email = email;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.gradeMath = gradeMath;
-		this.gradeHistory = gradeHistory;
-		this.gradeGeography = gradeGeography;
+		this.point = point;
 		this.role = role;
 	}
 
-	public User(Integer id, String email, String password, String firstName, String lastName, Integer gradeMath,
-			Integer gradeHistory, Integer gradeGeography, String role) {
+	public User(Integer id, String email, String password, String firstName, String lastName,
+			Map<Subjects, Integer> point, UserRole role) {
 		super();
 		this.id = id;
 		this.email = email;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.gradeMath = gradeMath;
-		this.gradeHistory = gradeHistory;
-		this.gradeGeography = gradeGeography;
+		this.point = point;
 		this.role = role;
 	}
 
@@ -81,35 +78,19 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public Integer getGradeMath() {
-		return gradeMath;
+	public Map<Subjects, Integer> getPoint() {
+		return point;
 	}
 
-	public void setGradeMath(Integer gradeMath) {
-		this.gradeMath = gradeMath;
+	public void setPoint(Map<Subjects, Integer> point) {
+		this.point = point;
 	}
 
-	public Integer getGradeHistory() {
-		return gradeHistory;
-	}
-
-	public void setGradeHistory(Integer gradeHistory) {
-		this.gradeHistory = gradeHistory;
-	}
-
-	public Integer getGradeGeography() {
-		return gradeGeography;
-	}
-
-	public void setGradeGeography(Integer gradeGeography) {
-		this.gradeGeography = gradeGeography;
-	}
-
-	public String getRole() {
+	public UserRole getRole() {
 		return role;
 	}
 
-	public void setRole(String role) {
+	public void setRole(UserRole role) {
 		this.role = role;
 	}
 
@@ -119,12 +100,10 @@ public class User {
 		int result = 1;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + ((gradeGeography == null) ? 0 : gradeGeography.hashCode());
-		result = prime * result + ((gradeHistory == null) ? 0 : gradeHistory.hashCode());
-		result = prime * result + ((gradeMath == null) ? 0 : gradeMath.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((point == null) ? 0 : point.hashCode());
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		return result;
 	}
@@ -148,21 +127,6 @@ public class User {
 				return false;
 		} else if (!firstName.equals(other.firstName))
 			return false;
-		if (gradeGeography == null) {
-			if (other.gradeGeography != null)
-				return false;
-		} else if (!gradeGeography.equals(other.gradeGeography))
-			return false;
-		if (gradeHistory == null) {
-			if (other.gradeHistory != null)
-				return false;
-		} else if (!gradeHistory.equals(other.gradeHistory))
-			return false;
-		if (gradeMath == null) {
-			if (other.gradeMath != null)
-				return false;
-		} else if (!gradeMath.equals(other.gradeMath))
-			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -178,10 +142,12 @@ public class User {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (role == null) {
-			if (other.role != null)
+		if (point == null) {
+			if (other.point != null)
 				return false;
-		} else if (!role.equals(other.role))
+		} else if (!point.equals(other.point))
+			return false;
+		if (role != other.role)
 			return false;
 		return true;
 	}
@@ -189,7 +155,6 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", password=" + password + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", gradeMath=" + gradeMath + ", gradeHistory=" + gradeHistory
-				+ ", gradeGeography=" + gradeGeography + ", role=" + role + "]";
+				+ ", lastName=" + lastName + ", point=" + point + ", role=" + role + "]";
 	}
 }

@@ -3,26 +3,26 @@ package ua.lviv.lgs.selectionCommittee.domain;
 public class Faculty {
 
 	private Integer id;
-	private String name;
-	private Integer numberOfPeople;
-	private Integer acceptableAssessment;
+	private FacultyName facultyName;
+	private Integer numberOfStudents;
+	private Integer acceptablePoints;
 	
 	public Faculty() {
 	}
 
-	public Faculty(String name, Integer numberOfPeople, Integer acceptableAssessment) {
+	public Faculty(FacultyName facultyName, Integer numberOfStudents, Integer acceptablePoints) {
 		super();
-		this.name = name;
-		this.numberOfPeople = numberOfPeople;
-		this.acceptableAssessment = acceptableAssessment;
+		this.facultyName = facultyName;
+		this.numberOfStudents = numberOfStudents;
+		this.acceptablePoints = acceptablePoints;
 	}
 
-	public Faculty(Integer id, String name, Integer numberOfPeople, Integer acceptableAssessment) {
+	public Faculty(Integer id, FacultyName facultyName, Integer numberOfStudents, Integer acceptablePoints) {
 		super();
 		this.id = id;
-		this.name = name;
-		this.numberOfPeople = numberOfPeople;
-		this.acceptableAssessment = acceptableAssessment;
+		this.facultyName = facultyName;
+		this.numberOfStudents = numberOfStudents;
+		this.acceptablePoints = acceptablePoints;
 	}
 
 	public Integer getId() {
@@ -33,38 +33,38 @@ public class Faculty {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public FacultyName getFacultyName() {
+		return facultyName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFacultyName(FacultyName facultyName) {
+		this.facultyName = facultyName;
 	}
 
-	public Integer getNumberOfPeople() {
-		return numberOfPeople;
+	public Integer getNumberOfStudents() {
+		return numberOfStudents;
 	}
 
-	public void setNumberOfPeople(Integer numberOfPeople) {
-		this.numberOfPeople = numberOfPeople;
+	public void setNumberOfStudents(Integer numberOfStudents) {
+		this.numberOfStudents = numberOfStudents;
 	}
 
-	public Integer getAcceptableAssessment() {
-		return acceptableAssessment;
+	public Integer getAcceptablePoints() {
+		return acceptablePoints;
 	}
 
-	public void setAcceptableAssessment(Integer acceptableAssessment) {
-		this.acceptableAssessment = acceptableAssessment;
+	public void setAcceptablePoints(Integer acceptablePoints) {
+		this.acceptablePoints = acceptablePoints;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((acceptableAssessment == null) ? 0 : acceptableAssessment.hashCode());
+		result = prime * result + ((acceptablePoints == null) ? 0 : acceptablePoints.hashCode());
+		result = prime * result + ((facultyName == null) ? 0 : facultyName.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((numberOfPeople == null) ? 0 : numberOfPeople.hashCode());
+		result = prime * result + ((numberOfStudents == null) ? 0 : numberOfStudents.hashCode());
 		return result;
 	}
 
@@ -77,32 +77,29 @@ public class Faculty {
 		if (getClass() != obj.getClass())
 			return false;
 		Faculty other = (Faculty) obj;
-		if (acceptableAssessment == null) {
-			if (other.acceptableAssessment != null)
+		if (acceptablePoints == null) {
+			if (other.acceptablePoints != null)
 				return false;
-		} else if (!acceptableAssessment.equals(other.acceptableAssessment))
+		} else if (!acceptablePoints.equals(other.acceptablePoints))
+			return false;
+		if (facultyName != other.facultyName)
 			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (name == null) {
-			if (other.name != null)
+		if (numberOfStudents == null) {
+			if (other.numberOfStudents != null)
 				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (numberOfPeople == null) {
-			if (other.numberOfPeople != null)
-				return false;
-		} else if (!numberOfPeople.equals(other.numberOfPeople))
+		} else if (!numberOfStudents.equals(other.numberOfStudents))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Faculty [id=" + id + ", name=" + name + ", numberOfPeople=" + numberOfPeople + ", acceptableAssessment="
-				+ acceptableAssessment + "]";
+		return "Faculty [id=" + id + ", facultyName=" + facultyName + ", numberOfStudents=" + numberOfStudents
+				+ ", acceptablePoints=" + acceptablePoints + "]";
 	}
 }
