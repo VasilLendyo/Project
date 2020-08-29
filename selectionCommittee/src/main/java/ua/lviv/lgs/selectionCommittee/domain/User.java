@@ -2,39 +2,61 @@ package ua.lviv.lgs.selectionCommittee.domain;
 
 import java.util.Map;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "user")
 public class User {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	
+	@Column
 	private String email;
+	
+	@Column
 	private String password;
+	
+	private String passwordConfirm;
+	
+	@Column(name = "first_name")
 	private String firstName;
+	
+	@Column(name = "last_name")
 	private String lastName;
-	private Map<Subjects, Integer> point;
+	
+	private Map<Subjects, Integer> grades;
+	
+	@Enumerated(EnumType.STRING)
 	private UserRole role;
 
 	public User() {
 	}
 
-	public User(String email, String password, String firstName, String lastName, Map<Subjects, Integer> point,
-			UserRole role) {
+	public User(String email, String password, String firstName, String lastName, UserRole role) {
 		super();
 		this.email = email;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.point = point;
 		this.role = role;
 	}
 
-	public User(Integer id, String email, String password, String firstName, String lastName,
-			Map<Subjects, Integer> point, UserRole role) {
+	public User(Integer id, String email, String password, String firstName, String lastName, UserRole role) {
 		super();
 		this.id = id;
 		this.email = email;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.point = point;
 		this.role = role;
 	}
 
@@ -62,6 +84,14 @@ public class User {
 		this.password = password;
 	}
 
+	public String getPasswordConfirm() {
+		return passwordConfirm;
+	}
+
+	public void setPasswordConfirm(String passwordConfirm) {
+		this.passwordConfirm = passwordConfirm;
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -78,12 +108,12 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public Map<Subjects, Integer> getPoint() {
-		return point;
+	public Map<Subjects, Integer> getGrades() {
+		return grades;
 	}
 
-	public void setPoint(Map<Subjects, Integer> point) {
-		this.point = point;
+	public void setGrades(Map<Subjects, Integer> grades) {
+		this.grades = grades;
 	}
 
 	public UserRole getRole() {
@@ -100,10 +130,11 @@ public class User {
 		int result = 1;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + ((grades == null) ? 0 : grades.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((point == null) ? 0 : point.hashCode());
+		result = prime * result + ((passwordConfirm == null) ? 0 : passwordConfirm.hashCode());
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		return result;
 	}
@@ -127,6 +158,11 @@ public class User {
 				return false;
 		} else if (!firstName.equals(other.firstName))
 			return false;
+		if (grades == null) {
+			if (other.grades != null)
+				return false;
+		} else if (!grades.equals(other.grades))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -142,10 +178,10 @@ public class User {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (point == null) {
-			if (other.point != null)
+		if (passwordConfirm == null) {
+			if (other.passwordConfirm != null)
 				return false;
-		} else if (!point.equals(other.point))
+		} else if (!passwordConfirm.equals(other.passwordConfirm))
 			return false;
 		if (role != other.role)
 			return false;
@@ -154,7 +190,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", email=" + email + ", password=" + password + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", point=" + point + ", role=" + role + "]";
+		return "User [id=" + id + ", email=" + email + ", password=" + password + ", passwordConfirm=" + passwordConfirm
+				+ ", firstName=" + firstName + ", lastName=" + lastName + ", grades=" + grades + ", role=" + role + "]";
 	}
 }

@@ -1,10 +1,27 @@
 package ua.lviv.lgs.selectionCommittee.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "faculty")
 public class Faculty {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	
+	@Column(name = "faculty_name")
 	private FacultyName facultyName;
+	
+	@Column(name = "numbers_of_students")
 	private Integer numberOfStudents;
+	
+	@Column(name = "acceptable_points")
 	private Integer acceptablePoints;
 	
 	public Faculty() {
