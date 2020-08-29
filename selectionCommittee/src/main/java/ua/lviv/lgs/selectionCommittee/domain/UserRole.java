@@ -1,5 +1,5 @@
 package ua.lviv.lgs.selectionCommittee.domain;
 
 public enum UserRole {
-	ADMISTRATOR, ENTRANT;
+	ROLE_ADMIN, ROLE_USER;
 }

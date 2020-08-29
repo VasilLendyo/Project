@@ -1,7 +1,5 @@
 package ua.lviv.lgs.selectionCommittee.domain;
 
-import java.util.Map;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -33,12 +31,20 @@ public class User {
 	@Column(name = "last_name")
 	private String lastName;
 	
-	private Map<Subjects, Integer> grades;
-	
 	@Enumerated(EnumType.STRING)
 	private UserRole role;
 
 	public User() {
+	}
+	
+	public User(User user) {
+		this.id = user.id;
+		this.email = user.email;
+		this.firstName = user.firstName;
+		this.lastName = user.lastName;
+		this.password = user.password;
+		this.passwordConfirm = user.getPasswordConfirm();
+		this.role = user.role;
 	}
 
 	public User(String email, String password, String firstName, String lastName, UserRole role) {
@@ -108,14 +114,6 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public Map<Subjects, Integer> getGrades() {
-		return grades;
-	}
-
-	public void setGrades(Map<Subjects, Integer> grades) {
-		this.grades = grades;
-	}
-
 	public UserRole getRole() {
 		return role;
 	}
@@ -130,7 +128,7 @@ public class User {
 		int result = 1;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + ((grades == null) ? 0 : grades.hashCode());
+//		result = prime * result + ((grades == null) ? 0 : grades.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
@@ -157,11 +155,6 @@ public class User {
 			if (other.firstName != null)
 				return false;
 		} else if (!firstName.equals(other.firstName))
-			return false;
-		if (grades == null) {
-			if (other.grades != null)
-				return false;
-		} else if (!grades.equals(other.grades))
 			return false;
 		if (id == null) {
 			if (other.id != null)
@@ -191,6 +184,6 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", password=" + password + ", passwordConfirm=" + passwordConfirm
-				+ ", firstName=" + firstName + ", lastName=" + lastName + ", grades=" + grades + ", role=" + role + "]";
+				+ ", firstName=" + firstName + ", lastName=" + lastName + ", grades=" + ", role=" + role + "]";
 	}
 }
