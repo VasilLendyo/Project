@@ -24,8 +24,8 @@ public class Submission {
 	private User user;
 	
 	@ManyToOne
-	@JoinColumn(name = "faculty_id", referencedColumnName = "id")
-	private Faculty faculty;
+	@JoinColumn(name = "applicant_id", referencedColumnName = "id")
+	private Applicant applicant;
 	
 	@Column
 	private Date date;
@@ -36,19 +36,19 @@ public class Submission {
 	public Submission() {
 	}
 
-	public Submission(User user, Faculty faculty, Date date, boolean accepted) {
+	public Submission(User user, Applicant applicant, Date date, boolean accepted) {
 		super();
 		this.user = user;
-		this.faculty = faculty;
+		this.applicant = applicant;
 		this.date = date;
 		this.accepted = accepted;
 	}
 
-	public Submission(Integer id, User user, Faculty faculty, Date date, boolean accepted) {
+	public Submission(Integer id, User user, Applicant applicant, Date date, boolean accepted) {
 		super();
 		this.id = id;
 		this.user = user;
-		this.faculty = faculty;
+		this.applicant = applicant;
 		this.date = date;
 		this.accepted = accepted;
 	}
@@ -69,12 +69,12 @@ public class Submission {
 		this.user = user;
 	}
 
-	public Faculty getFaculty() {
-		return faculty;
+	public Applicant getApplicant() {
+		return applicant;
 	}
 
-	public void setFaculty(Faculty faculty) {
-		this.faculty = faculty;
+	public void setApplicant(Applicant applicant) {
+		this.applicant = applicant;
 	}
 
 	public Date getDate() {
@@ -98,8 +98,8 @@ public class Submission {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + (accepted ? 1231 : 1237);
+		result = prime * result + ((applicant == null) ? 0 : applicant.hashCode());
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
-		result = prime * result + ((faculty == null) ? 0 : faculty.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
@@ -116,15 +116,15 @@ public class Submission {
 		Submission other = (Submission) obj;
 		if (accepted != other.accepted)
 			return false;
+		if (applicant == null) {
+			if (other.applicant != null)
+				return false;
+		} else if (!applicant.equals(other.applicant))
+			return false;
 		if (date == null) {
 			if (other.date != null)
 				return false;
 		} else if (!date.equals(other.date))
-			return false;
-		if (faculty == null) {
-			if (other.faculty != null)
-				return false;
-		} else if (!faculty.equals(other.faculty))
 			return false;
 		if (id == null) {
 			if (other.id != null)
@@ -141,7 +141,7 @@ public class Submission {
 
 	@Override
 	public String toString() {
-		return "Submission [id=" + id + ", user=" + user + ", faculty=" + faculty + ", date=" + date + ", accepted="
+		return "Submission [id=" + id + ", user=" + user + ", applicant=" + applicant + ", date=" + date + ", accepted="
 				+ accepted + "]";
 	}
 }

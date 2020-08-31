@@ -11,5 +11,4 @@ public class SelectionCommitteeApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SelectionCommitteeApplication.class, args);
 	}
-
 }
