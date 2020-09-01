@@ -19,9 +19,20 @@ public class ApplicantsController {
 	ApplicantService applicantService;
 	
 	@RequestMapping(value = "/addApplicant", method = RequestMethod.POST)
-	public ModelAndView registerApplicant(@Validated @ModelAttribute("applicant") Applicant applicant, BindingResult bindingResult) {
+	public ModelAndView addApplicant(@Validated @ModelAttribute("applicant") Applicant applicant, BindingResult bindingResult) {
 		applicantService.save(applicant);
 		return new ModelAndView("redirect:/home");
-		
 	}
+	
+    @RequestMapping(value ="/register-applicant", method = RequestMethod.GET)
+    public ModelAndView registerApplicant() {
+        return new ModelAndView("registerApplicant", "applicant", new Applicant());
+    }
+    
+    @RequestMapping(value ="/home", method = RequestMethod.GET)
+    public ModelAndView home() {
+    	ModelAndView map = new ModelAndView("home");
+    	map.addObject("applicants",applicantService.getAllApplicants());
+        return map;
+    }
 }
