@@ -51,16 +51,4 @@ public class UserController {
 
         return "login";
     }
-
-    @RequestMapping(value ="/home", method = RequestMethod.GET)
-    public ModelAndView welcome() {
-    	ModelAndView map = new ModelAndView();
-    	map.addObject("applicants",applicantService.getAllApplicants());
-        return map;
-    }
-    
-    @RequestMapping(value ="/register-applicant", method = RequestMethod.GET)
-    public ModelAndView registerApplicant() {
-        return new ModelAndView("registerApplicant", "applicant", new Applicant());
-    }
 }
