@@ -7,6 +7,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
@@ -26,6 +27,9 @@ public class Applicant {
 	@Column(name = "average_grade")
 	private Double averageGrade;
 
+	@Lob
+	private String encodedImage;
+	
 	public Applicant() {
 		super();
 	}
@@ -75,6 +79,14 @@ public class Applicant {
 
 	public void setAverageGrade(Double averageGrade) {
 		this.averageGrade = averageGrade;
+	}
+
+	public String getEncodedImage() {
+		return encodedImage;
+	}
+
+	public void setEncodedImage(String encodedImage) {
+		this.encodedImage = encodedImage;
 	}
 
 	@Override

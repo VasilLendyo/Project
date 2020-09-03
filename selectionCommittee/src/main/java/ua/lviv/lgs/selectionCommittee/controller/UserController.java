@@ -7,20 +7,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
-import ua.lviv.lgs.selectionCommittee.domain.Applicant;
 import ua.lviv.lgs.selectionCommittee.domain.User;
-import ua.lviv.lgs.selectionCommittee.service.ApplicantService;
 import ua.lviv.lgs.selectionCommittee.service.UserService;
 
 @Controller
 public class UserController {
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private ApplicantService applicantService;
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {

@@ -42,19 +42,23 @@
 					</h2>
 				</c:if>
 
-				<form:form method="POST" action="${contextPath}/addApplicant" modelAttribute="applicant">
+				<form:form method="POST" action="${contextPath}/addApplicant" enctype="multipart/form-data">
 					<table>
 						<tr>
-							<td><form:label path="name">Name</form:label></td>
-							<td><form:input path="name" /></td>
+							<td>Name</td>
+							<td><input type="text" name="name" /></td>
 						</tr>
 						<tr>
-							<td><form:label path="facultyName">Faculty Name</form:label></td>
-							<td><form:input path="facultyName" /></td>
+							<td>Faculty Name</td>
+							<td><input type="text" name="facultyName"></td>
 						</tr>
 						<tr>
-							<td><form:label path="averageGrade">Average Grade</form:label></td>
-							<td><form:input path="averageGrade" /></td>
+							<td>Average Grade</td>
+							<td><input type="number" name="averageGrade" min="0" step="any"></td>
+						</tr>
+						<tr>
+							<td>Select an image to upload</td>
+							<td><input type="file" name="image"></td>
 						</tr>
 						<tr>
 							<td><input type="submit" value="Submit" /></td>
