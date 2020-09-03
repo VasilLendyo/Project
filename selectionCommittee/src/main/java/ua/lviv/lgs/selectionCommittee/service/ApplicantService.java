@@ -21,4 +21,8 @@ public class ApplicantService {
 	public List<Applicant> getAllApplicants(){
 		return applicantRepository.findAll();
 	}
+	
+	public Applicant findById(Integer id) {
+		return applicantRepository.findById(id).get();
+	}
 }

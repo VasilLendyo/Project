@@ -1,5 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
@@ -27,7 +28,7 @@
 			<h3 class="w3-bar-item">Menu</h3>
 			<a href="/home" class="w3-bar-item w3-button">Home</a> <a
 				href="/register-applicant" class="w3-bar-item w3-button">Register
-				an applicant</a> <a href="#" class="w3-bar-item w3-button">Submission</a>
+				an applicant</a> <a href="/submissions" class="w3-bar-item w3-button">Submission</a>
 		</div>
 
 		<!-- Page Content -->
@@ -63,18 +64,17 @@
 								<p>${currentApplicant.facultyName}</p>
 								<p>${currentApplicant.averageGrade}</p>
 							</div>
-							<button class="w3-button w3-block w3-dark-grey">+ add to
-								submission</button>
+							<form:form action="${contextPath}/submission" method="POST" enctype="multipart/form-data">
+								<input type="hidden" value="${currentApplicant.id}"
+									class="form-control" name="applicantId"> 
+									<input type="submit" class="w3-button w3-block w3-dark-grey"
+									value="+ add to submission">
+							</form:form>
 						</div>
-
 					</c:forEach>
 				</c:if>
 			</div>
 		</div>
 	</div>
-	<!-- /container -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 </body>
 </html>

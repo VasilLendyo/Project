@@ -26,6 +26,9 @@ public class Applicant {
 	
 	@Column(name = "average_grade")
 	private Double averageGrade;
+	
+//	@Column
+//	private boolean accepted;
 
 	@Lob
 	private String encodedImage;

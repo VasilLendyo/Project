@@ -1,16 +1,14 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Applicants</title>
-
-<link href="${contextPath}/resources/css/bootstrap.min.css"
-	rel="stylesheet">
+<title>Periodicals</title>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
+<body>
 <body>
 	<div class="container">
 
@@ -22,57 +20,59 @@
 				an applicant</a> <a href="/submissions" class="w3-bar-item w3-button">Submission</a>
 		</div>
 
+
 		<!-- Page Content -->
 		<div style="margin-left: 10%">
-
 			<div class="w3-container w3-teal">
 				<h1>Applicants</h1>
 			</div>
-
 			<div class="w3-container">
 				<c:if test="${pageContext.request.userPrincipal.name != null}">
 					<form id="logoutForm" method="POST" action="${contextPath}/logout">
 						<input type="hidden" name="${_csrf.parameterName}"
 							value="${_csrf.token}" />
 					</form>
-
 					<h2>
 						Welcome ${pageContext.request.userPrincipal.name} | <a
 							onclick="document.forms['logoutForm'].submit()">Logout</a>
 					</h2>
 				</c:if>
 
-				<form:form method="POST" action="${contextPath}/addApplicant" enctype="multipart/form-data">
-					<table>
+				<table class="table table-striped">
+					<thead>
 						<tr>
-							<td>Name</td>
-							<td><input type="text" name="name" /></td>
+							<th>Id</th>
+							<th>Name</th>
+							<th>Faculty Name</th>
+							<th>Average Grade</th>
+							<th>Image</th>
+							<th>Date</th>
+							<th>Accepted</th>
+							<th>Action</th>
 						</tr>
-						<tr>
-							<td>Faculty Name</td>
-							<td><input type="text" name="facultyName"></td>
-						</tr>
-						<tr>
-							<td>Average Grade</td>
-							<td><input type="number" name="averageGrade" min="0" step="any"></td>
-						</tr>
-						<tr>
-							<td>Select an image to upload</td>
-							<td><input type="file" name="image"></td>
-						</tr>
-						<tr>
-							<td><input type="submit" value="Submit" /></td>
-						</tr>
-					</table>
-					<input type="hidden" name="${_csrf.parameterName}"
-						value="${_csrf.token}" />
-				</form:form>
+					</thead>
+					<tbody>
+						<c:forEach var="submission" items="${submissionItems}">
+							<tr>
+								<td>${submission.id}</td>
+								<td>${submission.applicant.name}</td>
+								<td>${submission.applicant.facultyName}</td>
+								<td>${submission.applicant.averageGrade}</td>
+								<td><img src="data:image/jpg;base64,${submission.applicant.encodedImage}" alt="image" style="width: 10%"></td>
+								<td>${submission.date}</td>
+								<td>${submission.accepted}</td>
+								<td><a href="submission?id= ${submission.id}">delete</a></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+
+
 			</div>
+
 		</div>
+
+
 	</div>
-	<!-- /container -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 </body>
-</html>
+</html> 

@@ -35,6 +35,11 @@ public class Submission {
 
 	public Submission() {
 	}
+	
+
+	public Submission(Integer id) {
+		this.id = id;
+	}
 
 	public Submission(User user, Applicant applicant, Date date, boolean accepted) {
 		super();
