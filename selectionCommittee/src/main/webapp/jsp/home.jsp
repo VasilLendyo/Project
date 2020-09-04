@@ -62,7 +62,10 @@
 							<div class="w3-container w3-center">
 								<h3>${currentApplicant.name}</h3>
 								<p>${currentApplicant.facultyName}</p>
-								<p>${currentApplicant.averageGrade}</p>
+								<p>${currentApplicant.subject1}</p>
+								<p>${currentApplicant.subject2}</p>
+								<p>${currentApplicant.subject3}</p>
+								<p><b>${currentApplicant.allGrades}</b></p>
 							</div>
 							<form:form action="${contextPath}/submission" method="POST" enctype="multipart/form-data">
 								<input type="hidden" value="${currentApplicant.id}"

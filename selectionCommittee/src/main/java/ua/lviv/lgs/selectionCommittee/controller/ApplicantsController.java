@@ -24,8 +24,10 @@ public class ApplicantsController {
 	public ModelAndView registerApplicant(@RequestParam MultipartFile image, 
 			@RequestParam String name, 
 			@RequestParam FacultyName facultyName, 
-			@RequestParam Double averageGrade) throws IOException {
-		applicantService.save(ApplicantDtoHelper.createEntity(image, name, facultyName, averageGrade));
+			@RequestParam Integer subject1,
+			@RequestParam Integer subject2,
+			@RequestParam Integer subject3) throws IOException {
+		applicantService.save(ApplicantDtoHelper.createEntity(image, name, facultyName, subject1, subject2, subject3));
 		
 		return new ModelAndView("redirect:/home");
 	}

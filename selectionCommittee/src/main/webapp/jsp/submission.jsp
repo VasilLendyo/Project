@@ -44,11 +44,10 @@
 							<th>Id</th>
 							<th>Name</th>
 							<th>Faculty Name</th>
-							<th>Average Grade</th>
 							<th>Image</th>
+							<th>All Grades</th>
 							<th>Date</th>
 							<th>Accepted</th>
-							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -57,11 +56,12 @@
 								<td>${submission.id}</td>
 								<td>${submission.applicant.name}</td>
 								<td>${submission.applicant.facultyName}</td>
-								<td>${submission.applicant.averageGrade}</td>
-								<td><img src="data:image/jpg;base64,${submission.applicant.encodedImage}" alt="image" style="width: 10%"></td>
+								<td><img
+									src="data:image/jpg;base64,${submission.applicant.encodedImage}"
+									alt="image" style="width: 10%"></td>
+								<td>${submission.applicant.allGrades}</td>
 								<td>${submission.date}</td>
 								<td>${submission.accepted}</td>
-								<td><a href="submission?id= ${submission.id}">delete</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -75,4 +75,4 @@
 
 	</div>
 </body>
-</html> 
+</html>

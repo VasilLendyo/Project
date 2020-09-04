@@ -42,7 +42,7 @@ public class SubmissionController {
 		Submission submission = new Submission();
 		submission.setApplicant(applicant);
 		submission.setDate(new Date());
-		if(applicant.getAverageGrade()>10.0) {
+		if(applicant.getAllGrades()>350) {
 			submission.setAccepted(true);
 		}
 
@@ -55,15 +55,10 @@ public class SubmissionController {
 		return getSubmissionItems();
 	}
 
-	@RequestMapping(value = "/submission", method = RequestMethod.GET)
-	public ModelAndView delete(@RequestParam String id) {
-		submissionService.delete(new Submission(Integer.parseInt(id.replaceAll("\\s",""))));
-		return getSubmissionItems();
-	}
-
 	private ModelAndView getSubmissionItems() {
 		ModelAndView map = new ModelAndView("submission");
 		map.addObject("submissionItems", submissionService.getAll());
+//		Collections.sort(submissionService.getAll(), (a, b) -> a.getApplicant().getAllGrades().compareTo(b.getApplicant().getAllGrades()));
 		return map;
 	}
 

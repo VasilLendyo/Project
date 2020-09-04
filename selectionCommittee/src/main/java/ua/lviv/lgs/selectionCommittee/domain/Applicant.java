@@ -24,12 +24,18 @@ public class Applicant {
 	@Enumerated(EnumType.STRING)
 	private FacultyName facultyName;
 	
-	@Column(name = "average_grade")
-	private Double averageGrade;
+	@Column
+	private Integer subject1;
 	
-//	@Column
-//	private boolean accepted;
+	@Column
+	private Integer subject2;
+	
+	@Column
+	private Integer subject3;
 
+	@Column(name = "all_grades")
+	private Integer allGrades;
+	
 	@Lob
 	private String encodedImage;
 	
@@ -37,19 +43,29 @@ public class Applicant {
 		super();
 	}
 
-	public Applicant(String name, FacultyName facultyName, Double averageGrade) {
+	public Applicant(String name, FacultyName facultyName, Integer subject1, Integer subject2, Integer subject3,
+			Integer allGrades, String encodedImage) {
 		super();
 		this.name = name;
 		this.facultyName = facultyName;
-		this.averageGrade = averageGrade;
+		this.subject1 = subject1;
+		this.subject2 = subject2;
+		this.subject3 = subject3;
+		this.allGrades = allGrades;
+		this.encodedImage = encodedImage;
 	}
 
-	public Applicant(Integer id, String name, FacultyName facultyName, Double averageGrade) {
+	public Applicant(Integer id, String name, FacultyName facultyName, Integer subject1, Integer subject2,
+			Integer subject3, Integer allGrades, String encodedImage) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.facultyName = facultyName;
-		this.averageGrade = averageGrade;
+		this.subject1 = subject1;
+		this.subject2 = subject2;
+		this.subject3 = subject3;
+		this.allGrades = allGrades;
+		this.encodedImage = encodedImage;
 	}
 
 	public Integer getId() {
@@ -76,12 +92,36 @@ public class Applicant {
 		this.facultyName = facultyName;
 	}
 
-	public Double getAverageGrade() {
-		return averageGrade;
+	public Integer getSubject1() {
+		return subject1;
 	}
 
-	public void setAverageGrade(Double averageGrade) {
-		this.averageGrade = averageGrade;
+	public void setSubject1(Integer subject1) {
+		this.subject1 = subject1;
+	}
+
+	public Integer getSubject2() {
+		return subject2;
+	}
+
+	public void setSubject2(Integer subject2) {
+		this.subject2 = subject2;
+	}
+
+	public Integer getSubject3() {
+		return subject3;
+	}
+
+	public void setSubject3(Integer subject3) {
+		this.subject3 = subject3;
+	}
+
+	public Integer getAllGrades() {
+		return allGrades;
+	}
+
+	public void setAllGrades(Integer allGrades) {
+		this.allGrades = allGrades;
 	}
 
 	public String getEncodedImage() {
@@ -96,10 +136,14 @@ public class Applicant {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((averageGrade == null) ? 0 : averageGrade.hashCode());
+		result = prime * result + ((allGrades == null) ? 0 : allGrades.hashCode());
+		result = prime * result + ((encodedImage == null) ? 0 : encodedImage.hashCode());
 		result = prime * result + ((facultyName == null) ? 0 : facultyName.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((subject1 == null) ? 0 : subject1.hashCode());
+		result = prime * result + ((subject2 == null) ? 0 : subject2.hashCode());
+		result = prime * result + ((subject3 == null) ? 0 : subject3.hashCode());
 		return result;
 	}
 
@@ -112,10 +156,15 @@ public class Applicant {
 		if (getClass() != obj.getClass())
 			return false;
 		Applicant other = (Applicant) obj;
-		if (averageGrade == null) {
-			if (other.averageGrade != null)
+		if (allGrades == null) {
+			if (other.allGrades != null)
 				return false;
-		} else if (!averageGrade.equals(other.averageGrade))
+		} else if (!allGrades.equals(other.allGrades))
+			return false;
+		if (encodedImage == null) {
+			if (other.encodedImage != null)
+				return false;
+		} else if (!encodedImage.equals(other.encodedImage))
 			return false;
 		if (facultyName != other.facultyName)
 			return false;
@@ -129,12 +178,28 @@ public class Applicant {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
+		if (subject1 == null) {
+			if (other.subject1 != null)
+				return false;
+		} else if (!subject1.equals(other.subject1))
+			return false;
+		if (subject2 == null) {
+			if (other.subject2 != null)
+				return false;
+		} else if (!subject2.equals(other.subject2))
+			return false;
+		if (subject3 == null) {
+			if (other.subject3 != null)
+				return false;
+		} else if (!subject3.equals(other.subject3))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Applicant [id=" + id + ", name=" + name + ", facultyName=" + facultyName + ", averageGrade="
-				+ averageGrade + "]";
+		return "Applicant [id=" + id + ", name=" + name + ", facultyName=" + facultyName + ", subject1=" + subject1
+				+ ", subject2=" + subject2 + ", subject3=" + subject3 + ", allGrades=" + allGrades + ", encodedImage="
+				+ encodedImage + "]";
 	}
 }

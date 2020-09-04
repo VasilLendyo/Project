@@ -7,16 +7,17 @@ import org.springframework.web.multipart.MultipartFile;
 
 import ua.lviv.lgs.selectionCommittee.domain.Applicant;
 import ua.lviv.lgs.selectionCommittee.domain.FacultyName;
-import ua.lviv.lgs.selectionCommittee.domain.Submission;
 
 public class ApplicantDtoHelper {
 
-	public static Applicant createEntity(MultipartFile file, String name, FacultyName facultyName, Double averageGrade) throws IOException {
+	public static Applicant createEntity(MultipartFile file, String name, FacultyName facultyName, Integer subject1, Integer subject2, Integer subject3) throws IOException {
 		Applicant applicant = new Applicant();
-		Submission submission = new Submission();
 		applicant.setName(name);
 		applicant.setFacultyName(facultyName);
-		applicant.setAverageGrade(averageGrade);
+		applicant.setSubject1(subject1);
+		applicant.setSubject2(subject2);
+		applicant.setSubject3(subject3);
+		applicant.setAllGrades(subject1 + subject2 + subject3);
 
 		applicant.setEncodedImage(Base64.getEncoder().encodeToString(file.getBytes()));
 		

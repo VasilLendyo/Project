@@ -13,16 +13,16 @@ public class SubmissionService {
 
 	@Autowired
 	private SubmissionRepository submissionRepository;
+	
 
 	public List<Submission> getAll() {
 		return submissionRepository.findAll();
 	}
-
-	public void delete(Submission submission) {
-		submissionRepository.delete(submission);
-	}
+	
 
 	public Submission add(Submission submission) {
 		return submissionRepository.save(submission);
 	}
+	
+	
 }
