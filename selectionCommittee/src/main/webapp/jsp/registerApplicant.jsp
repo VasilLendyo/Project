@@ -42,7 +42,8 @@
 					</h2>
 				</c:if>
 
-				<form:form method="POST" action="${contextPath}/addApplicant" enctype="multipart/form-data">
+				<form:form method="POST" action="${contextPath}/addApplicant"
+					enctype="multipart/form-data">
 					<table>
 						<tr>
 							<td>Name</td>
@@ -53,8 +54,16 @@
 							<td><input type="text" name="facultyName"></td>
 						</tr>
 						<tr>
-							<td>Average Grade</td>
-							<td><input type="number" name="averageGrade" min="0" step="any"></td>
+							<td>Subject 1</td>
+							<td><input type="number" name="subject1"></td>
+						</tr>
+						<tr>
+							<td>Subject 2</td>
+							<td><input type="number" name="subject2"></td>
+						</tr>
+						<tr>
+							<td>Subject 3</td>
+							<td><input type="number" name="subject3"></td>
 						</tr>
 						<tr>
 							<td>Select an image to upload</td>
@@ -70,9 +79,5 @@
 			</div>
 		</div>
 	</div>
-	<!-- /container -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 </body>
 </html>
