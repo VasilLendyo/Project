@@ -1,6 +1,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="security"
+	uri="http://www.springframework.org/security/tags"%>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
@@ -26,9 +28,17 @@
 		<!-- Sidebar -->
 		<div class="w3-sidebar w3-light-grey w3-bar-block" style="width: 10%">
 			<h3 class="w3-bar-item">Menu</h3>
-			<a href="/home" class="w3-bar-item w3-button">Home</a> <a
-				href="/register-applicant" class="w3-bar-item w3-button">Register
-				an applicant</a> <a href="/submissions" class="w3-bar-item w3-button">Submission</a>
+
+			<a href="/home" class="w3-bar-item w3-button">Home</a>
+			
+			<security:authorize access="hasRole('ROLE_USER')">
+			<a href="/register-applicant" class="w3-bar-item w3-button">Register
+				an applicant</a>
+			</security:authorize>
+				
+			<security:authorize access="hasRole('ROLE_ADMIN')">	
+			<a href="/submissions" class="w3-bar-item w3-button">Submission</a>
+			</security:authorize>
 		</div>
 
 		<!-- Page Content -->
@@ -67,12 +77,15 @@
 								<p>${currentApplicant.subject3}</p>
 								<p><b>${currentApplicant.allGrades}</b></p>
 							</div>
+							
+							<security:authorize access="hasRole('ROLE_ADMIN)">
 							<form:form action="${contextPath}/submission" method="POST" enctype="multipart/form-data">
 								<input type="hidden" value="${currentApplicant.id}"
 									class="form-control" name="applicantId"> 
 									<input type="submit" class="w3-button w3-block w3-dark-grey"
 									value="+ add to submission">
 							</form:form>
+							</security:authorize>
 						</div>
 					</c:forEach>
 				</c:if>
