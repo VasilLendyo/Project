@@ -18,8 +18,6 @@
 
 <title>Applicants</title>
 
-<link href="${contextPath}/resources/css/bootstrap.min.css"
-	rel="stylesheet">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
@@ -78,7 +76,7 @@
 								<p><b>${currentApplicant.allGrades}</b></p>
 							</div>
 							
-							<security:authorize access="hasRole('ROLE_ADMIN)">
+							<security:authorize access="hasRole('ROLE_ADMIN')">
 							<form:form action="${contextPath}/submission" method="POST" enctype="multipart/form-data">
 								<input type="hidden" value="${currentApplicant.id}"
 									class="form-control" name="applicantId"> 
