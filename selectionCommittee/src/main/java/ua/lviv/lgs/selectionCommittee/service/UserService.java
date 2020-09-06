@@ -23,7 +23,7 @@ public class UserService{
 
 
     public void save(User user) {
-    	logger.info("Register new user {}: " + user);
+    	logger.info("Register new user {}: ", user);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setPassword(bCryptPasswordEncoder.encode(user.getPasswordConfirm()));
         user.setRole(UserRole.ROLE_USER);
@@ -31,7 +31,7 @@ public class UserService{
     }
     
     public User findByEmail(String email) {
-    	logger.info("Get user {} by email: " + email);
+    	logger.info("Get user {} by email: ", email);
     	return userRepository.findByEmail(email).get();
     }
 

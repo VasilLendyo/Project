@@ -19,7 +19,7 @@ public class ApplicantService {
 	private ApplicantRepository applicantRepository;
 	
 	public Applicant save(Applicant applicant) {
-		logger.info("Register applicant {}: " + applicant);
+		logger.info("Register applicant {}: ", applicant);
 		return applicantRepository.save(applicant);
 	}
 	
@@ -29,7 +29,7 @@ public class ApplicantService {
 	}
 	
 	public Applicant findById(Integer id) {
-		logger.info("Get applicants by id: " + id);
+		logger.info("Get applicants by id {}: ", id);
 		return applicantRepository.findById(id).get();
 	}
 }
